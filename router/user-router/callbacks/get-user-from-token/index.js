@@ -2,8 +2,8 @@ const userModel = require("../../../../database/models/userModel");
 const verifyToken = require("../../../../utils/verifyToken");
 
 /**
- * This function first verifies the userToken, it verified then it returns the
- * user data.
+ * This function first verifies the userToken, it verified then it sends the
+ * user data as response.
  * @param {*} request
  * @param {*} response
  */
