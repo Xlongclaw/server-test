@@ -7,6 +7,7 @@ const connectDatabase = require('./database/connectDatabase')
  */
 const baseRouter = require('./router/base-router')
 const otpRouter = require('./router/otp-router')
+const userRouter = require('./router/user-router')
 
 
 const server = express()
@@ -16,7 +17,7 @@ const server = express()
  */
 server.use('/',baseRouter);
 server.use('/otp',otpRouter);
-
+server.use('/user',userRouter)
 
 /**
  * Setting up an Express Listener.

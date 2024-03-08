@@ -1,6 +1,6 @@
 
 
-const verifyToken = (token:string) => {
+const verifyToken = (token) => {
   const jwt = require("jsonwebtoken");
   try{
     const data = jwt.verify(token,process.env.JWT_SECRET);
