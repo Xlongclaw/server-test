@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const addUser = require('./callbacks/add-user')
+const getUserFromToken = require('./callbacks/get-user-from-token')
 
 /**
  * Handles request sent at `/user` .
@@ -35,6 +36,8 @@ router.route("/")
  * { code: "INVALID_TOKEN" } && status(400) -> The AUTH_TOKEN is not valid.
  */
 router.route('/add').post(addUser)
+
+router.route('/token').get(getUserFromToken)
 
 
 module.exports = router;
