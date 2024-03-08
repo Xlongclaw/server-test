@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require('express')
+const connectDatabase = require('./database/connectDatabase')
 
 /**
  * Router Modules Imports
@@ -23,6 +24,8 @@ server.use('/otp',otpRouter);
  */
 const PORT = process.env.PORT ?? 9090
 const SERVER_ADDRESS = process.env.SERVER_ADDRESS ?? `{SERVER_ADDRESS}`
+
 server.listen(PORT,function(){
   console.log(`Server is running at -> ${SERVER_ADDRESS}:${PORT}`);
+  connectDatabase()
 })
