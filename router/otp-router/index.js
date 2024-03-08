@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router()
 const sendOtpToPhone = require('./callbacks/send-otp-to-phone')
+const validateOtp = require('./callbacks/validate-otp')
 
 /**
  * Handles request sent at `/otp` .
@@ -26,5 +27,26 @@ router.get('/',function(request,response){
  * { code: "USER_EXISTS" } && status(401) -> signifies User already exists in the database.
  */
 router.get('/send',sendOtpToPhone)
+
+/**
+ * Handles the request at '/otp/validate'
+ * 
+ * Description : This API compares the otp in the request params with the 
+ * one saved in the database when the request is sent at '/otp/send' with the phone number.
+ * 
+ * Params Required :
+ * phoneNumber -> number for which the otp has to be checked.
+ * otp -> otp from request params.
+ * 
+ * Possible Responses : (JSON)
+ * { code: "SUCCESS", userToken } && status(200) -> signifies that OTP matches and
+ * the userToken contains freshly generated token containing users phoneNumber. this 
+ * token is required for the proper authentication of the user.
+ * 
+ * { code: "INVALID_OTP" } && status(400) -> request params otp does not match with the otp in the database
+ * { code: "OTP_EXPIRED" } && status(401) -> the otp entered is expired.
+ * 
+ */
+router.get('/validate',validateOtp)
 
 module.exports = router
