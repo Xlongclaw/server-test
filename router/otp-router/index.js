@@ -11,7 +11,7 @@ router.get('/',function(request,response){
 })
 
 /**
- * Handles request at `/otp/send`.
+ * Handles GET request at `/otp/send`.
  * 
  * Description : This API sends an OTP to the requested Phone Number and also strores the 
  * same otp in the Databse.
@@ -29,7 +29,7 @@ router.get('/',function(request,response){
 router.get('/send',sendOtpToPhone)
 
 /**
- * Handles the request at '/otp/validate'
+ * Handles GET request at '/otp/validate'
  * 
  * Description : This API compares the otp in the request params with the 
  * one saved in the database when the request is sent at '/otp/send' with the phone number.

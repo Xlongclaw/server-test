@@ -30,17 +30,17 @@
 
 ##### Possible Responses : (JSON)
 
- ```json
+ ```
  { code: "SUCCESS" } && status(200) 
  // Signifies that OTP is sent successfully.
  ```
 
- ```json
+ ```
  { code: "INVALID_SERVER_KEY" } && status(400) 
  // `serverKey` does not match.
  ```
 
- ```json
+ ```
 { code: "USER_EXISTS" } && status(401)
  // Signifies User already exists in the database
  ```
@@ -58,17 +58,17 @@ This API compares the otp in the request params with the one saved in the databa
 
 ##### Possible Responses : (JSON)
 
- ```json
+ ```
 { code: "SUCCESS", userToken } && status(200)
 // Signifies that OTP matches and the userToken contains freshly generated token containing users phoneNumber.This token is required for the proper authentication of the user.
  ```
 
- ```json
+ ```
 { code: "INVALID_OTP" } && status(400) 
 // Request params otp does not match with the otp in the database
  ```
 
- ```json
+ ```
 { code: "OTP_EXPIRED" } && status(401)
 // The otp entered is expired.
  ```
