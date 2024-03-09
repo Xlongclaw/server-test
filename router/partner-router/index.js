@@ -13,7 +13,7 @@ router.route("/").get(getPartnerFromCredentials);
 /**
  * Handles request sent at `/partner/add` .
  */
-router.route("/add").get(addPartner);
+router.route("/add").post(addPartner);
 
 
 module.exports = router;
