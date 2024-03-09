@@ -23,9 +23,6 @@ const validateOtp = async function (request,response){
    * If user is found then comparing the OTPs and sendiing a 
    * meaningful response.
    */
-
-
-
   if(user){    
     if(user.otp == request.query.otp){
 

@@ -1,7 +1,6 @@
 const mongoose  = require('mongoose')
 
-const partnerOrderSchema =new mongoose.Schema({
-  _id: Schema.Types.ObjectId,
+const PartnerOrderSchema =new mongoose.Schema({
   orderPrice:Number,
   orderStatusCode:Number,
   // 100 -completed 101-accepted 103-pending 102-rejected 
@@ -12,8 +11,7 @@ const partnerOrderSchema =new mongoose.Schema({
       itemPrice:Number
     },
   ],
-  partners:[{type: mongoose.Schema.Types.ObjectId, ref: 'Partner'}]
 });
 
-const partnerOrderModel = mongoose.model("PartnerOrder", partnerOrderSchema);
+const partnerOrderModel = mongoose.model("PartnerOrder", PartnerOrderSchema);
 module.exports = partnerOrderModel;

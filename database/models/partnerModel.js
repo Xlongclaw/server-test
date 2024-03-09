@@ -5,7 +5,7 @@ const partnerSchema = new mongoose.Schema({
   password: String,
   phoneNumber: String,
   restaurantId: String,
-  orders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }],
+  orderIds: [String],
 });
 
 
