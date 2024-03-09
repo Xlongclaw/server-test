@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require('express')
 const connectDatabase = require('./database/connectDatabase')
 
+
 /**
  * Router Modules Imports
  */
@@ -12,7 +13,7 @@ const partnerRouter = require('./router/partner-router')
 
 
 const server = express()
-
+server.use(express.json())
 /**
  * Loading Different Router Modules in the Server.
  */

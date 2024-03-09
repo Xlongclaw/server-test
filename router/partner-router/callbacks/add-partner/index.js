@@ -22,6 +22,7 @@ const addPartner = async (request, response) => {
    * database.
    */
   if (tokenData.status == "VERIFIED") {
+    console.log(JSON.stringify(request.body));
     const {
       address,
       description,
@@ -47,7 +48,7 @@ const addPartner = async (request, response) => {
       isOpen: false,
     }).then((res)=>console.log(res))
 
-    
+
     await partnerModel.create({
       name: request.body.name,
       password: request.body.password,
