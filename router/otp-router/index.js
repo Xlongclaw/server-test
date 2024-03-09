@@ -37,6 +37,7 @@ router.get('/send',sendOtpToPhone)
  * Params Required :
  * phoneNumber -> number for which the otp has to be checked.
  * otp -> otp from request params.
+ * clientType -> "USER" OR "PARTNER" depanding on who is sending the request.
  * 
  * Possible Responses : (JSON)
  * { code: "SUCCESS", userToken } && status(200) -> signifies that OTP matches and

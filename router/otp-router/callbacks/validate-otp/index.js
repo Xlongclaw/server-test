@@ -1,4 +1,5 @@
 const userOtpModel = require('../../../../database/models/userOtpModel');
+const partnerOtpModel = require('../../../../database/models/partnerOtpModel');
 const generateToken = require('../../../../utils/generateToken')
 
 /**
@@ -13,12 +14,18 @@ const validateOtp = async function (request,response){
    * Searching userOtp object in userOtpModel with the phoneNumber
    * provided in the request Params.
    */
-  let user = await userOtpModel.findOne({phoneNumber:request.query.phoneNumber})
-
+  let user = await (async ()=>{
+    if(request.query.clientType==="USER") return await userOtpModel.findOne({phoneNumber:request.query.phoneNumber})
+    else return await partnerOtpModel.findOne({phoneNumber:request.query.phoneNumber})
+  })()
+    
   /**
    * If user is found then comparing the OTPs and sendiing a 
    * meaningful response.
    */
+
+
+
   if(user){    
     if(user.otp == request.query.otp){
 
@@ -26,8 +33,13 @@ const validateOtp = async function (request,response){
        * if OTP matches then authenticating user by generating a JWT token
        * and sendind it with the response.
        */
-      const userToken = generateToken(request.query.phoneNumber)
-      response.status(200).json({'code':'SUCCESS',userToken})
+      try{
+        const userToken = generateToken(request.query.phoneNumber)
+        response.status(200).json({'code':'SUCCESS',userToken})
+      }
+      catch(err){
+        response.json({'code':'INVALID_PHONE_NUMBER'})
+      }
     }  
     else response.status(400).json({'code':'INVALID_OTP'})
   }
