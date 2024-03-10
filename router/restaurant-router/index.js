@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const getPartnerRestaurant = require('./callback/get-partner-restaurant');
 const getRestaurantById = require("./callback/get-restaurant-by-id");
+const addCategory = require("./callback/add-category");
 
 /**
  * Handles request sent at `/restaurant` .
@@ -12,5 +13,9 @@ router.route("/")
 
 router.route('/partner')
 .get(getPartnerRestaurant)
+
+
+router.route('/category')
+.post(addCategory)
 
 module.exports = router;
