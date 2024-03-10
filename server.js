@@ -10,6 +10,7 @@ const baseRouter = require('./router/base-router')
 const otpRouter = require('./router/otp-router')
 const userRouter = require('./router/user-router')
 const partnerRouter = require('./router/partner-router')
+const restaurantRouter = require('./router/restaurant-router')
 
 
 const server = express()
@@ -21,6 +22,7 @@ server.use('/',baseRouter);
 server.use('/otp',otpRouter);
 server.use('/user',userRouter)
 server.use('/partner',partnerRouter)
+server.use('/restaurant',restaurantRouter)
 
 /**
  * Setting up an Express Listener.
