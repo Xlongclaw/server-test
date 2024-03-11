@@ -1,10 +1,8 @@
 const dishModel = require("../../../../database/models/dishModel");
-const foodCategoryModel = require("../../../../database/models/foodCategoryModel");
 const restaurantModel = require("../../../../database/models/restaurantModel");
 
 const addDish = async (request, response) => {
   try {
-    console.log(request.body);
     if (!request.body) {
       response.json({ code: "DATA_NOT_FOUND", message: "NO DATA" });
     } else {

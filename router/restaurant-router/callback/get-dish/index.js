@@ -1,4 +1,4 @@
-const foodCategoryModel = require("../../../../database/models/foodCategoryModel");
+const dishModel = require("../../../../database/models/dishModel");
 
 const getDish = async (request, response) => {
   try {
@@ -6,8 +6,8 @@ const getDish = async (request, response) => {
       response.json({code:'ID_NOT_FOUND',message:'_id not found'})
     }
     else{
-      const foodCategory = await foodCategoryModel.findOne({_id:request.query._id})
-      response.json({code:'SUCCESS',foodCategory})
+      const dish = await dishModel.findOne({_id:request.query._id})
+      response.json({code:'SUCCESS',dish})
     }
   } catch (error) {
     console.log(error);
