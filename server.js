@@ -57,7 +57,6 @@ httpServer.on('upgrade',(req,socket,head)=>{
 
 wss.on('connection', async(ws,request)=>{
   try {
-
     ws.on('message',(message)=>{
       console.log("message: %s", message);
     })
@@ -67,9 +66,6 @@ wss.on('connection', async(ws,request)=>{
       password: routes[2],
     });
     if (partner) {
-      ws.send(
-        `Hello, ${partner.name} I am a Web Socket Server and I will tell u when the database data changes.`
-      );
       dishModel.watch().on("change", (data) => {
         console.log(data);
         ws.send(
