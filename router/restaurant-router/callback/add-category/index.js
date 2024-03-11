@@ -10,16 +10,19 @@ const addCategory = async (request, response) => {
         message: "Request Body does not contain name or restaurantId",
       });
     } else {
-      const category = await foodCategoryModel.create({
-        category: request.body.name,
-      });
-      if (category) {
-         await restaurantModel.updateOne(
-          { _id: request.body.restaurantId },
-          { $push: { foodCategoryIds: category._id } }
-        );
-        response.json({ code: "SUCCESS", _id: category._id });
-      }
+      const category = restaurantModel.updateOne(
+        { _id: request.body.restaurantId },
+        {
+          $push: {
+            foodCategories: {
+              name: request.body.name,
+              dishIds: [],
+            },
+          },
+        }
+      );
+      if (category) response.json({ code: "SUCCESS" });
+      else response.json({ code: "NOT_ADDED" });
     }
   } catch (error) {
     console.log(error);

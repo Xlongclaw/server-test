@@ -11,7 +11,7 @@ const getDish = require("./callback/get-dish");
  * Handles request sent at `/restaurant` .
  */
 router.route("/")
-.get(getRestaurantById);
+.get(getRestaurantById)
 
 
 router.route('/partner')

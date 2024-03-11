@@ -13,7 +13,7 @@ const RestaurantSchema =new mongoose.Schema({
     url:String,
     signature:String
   }],
-  foodCategoryIds:[{
+  foodCategories:[{
     name:String,
     dishIds:[String]
   }],
