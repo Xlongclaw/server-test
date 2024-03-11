@@ -6,13 +6,16 @@ const DishSchema = new mongoose.Schema({
   prepTime: Number,
   price: Number,
   nonVeg: Boolean,
-  rating: Number,
-  image: {
-    publicId:String,
-    url:String,
-    signature:String
+  rating: {
+    type: Number,
+    default: 5,
   },
-  available: Boolean,
+  image: {
+    publicId: String,
+    url: String,
+    signature: String,
+  },
+  available: { type: Boolean, default: true },
 });
 
 const dishModel = mongoose.model("dish", DishSchema);
