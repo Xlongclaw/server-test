@@ -13,7 +13,10 @@ const RestaurantSchema =new mongoose.Schema({
     url:String,
     signature:String
   }],
-  foodCategoryIds:[String],
+  foodCategoryIds:[{
+    name:String,
+    dishIds:[String]
+  }],
   rating:Number,
   isOpen:{
     type:String,
