@@ -7,7 +7,11 @@ const DishSchema = new mongoose.Schema({
   price: Number,
   nonVeg: Boolean,
   rating: Number,
-  image: String,
+  image: {
+    publicId:String,
+    url:String,
+    signature:String
+  },
   available: Boolean,
 });
 

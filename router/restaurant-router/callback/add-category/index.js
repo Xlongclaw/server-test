@@ -10,7 +10,7 @@ const addCategory = async (request, response) => {
         message: "Request Body does not contain name or restaurantId",
       });
     } else {
-      const category = restaurantModel.updateOne(
+      const category = await restaurantModel.updateOne(
         { _id: request.body.restaurantId },
         {
           $push: {
@@ -21,8 +21,9 @@ const addCategory = async (request, response) => {
           },
         }
       );
-      if (category) response.json({ code: "SUCCESS" });
-      else response.json({ code: "NOT_ADDED" });
+      if (category) {
+        response.json({ code: "SUCCESS" });
+      } else response.json({ code: "NOT_ADDED" });
     }
   } catch (error) {
     console.log(error);
