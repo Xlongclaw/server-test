@@ -57,6 +57,10 @@ httpServer.on('upgrade',(req,socket,head)=>{
 
 wss.on('connection', async(ws,request)=>{
   try {
+
+    ws.on('message',(message)=>{
+      console.log("message: %s", message);
+    })
     const routes = request.url.split("/");
     const partner = await partnerModel.findOne({
       phoneNumber: routes[1],
@@ -66,7 +70,6 @@ wss.on('connection', async(ws,request)=>{
       ws.send(
         `Hello, ${partner.name} I am a Web Socket Server and I will tell u when the database data changes.`
       );
-      console.log(request.url);
       dishModel.watch().on("change", (data) => {
         console.log(data);
         ws.send(
