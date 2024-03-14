@@ -9,6 +9,7 @@ const getDish = require("./callback/get-dish");
 const deleteCategory = require("./callback/delete-category");
 const deleteDish = require("./callback/delete-dish");
 const editDish = require("./callback/edit-dish");
+const setAvailaibility = require("./callback/set-availability");
 
 /**
  * Handles request sent at `/restaurant` .
@@ -29,5 +30,9 @@ router
   .post(addDish)
   .put(editDish)
   .delete(deleteDish);
+
+  router
+  .route("/dish/available")
+  .post(setAvailaibility)
 
 module.exports = router;
