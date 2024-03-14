@@ -10,11 +10,14 @@ const deleteCategory = require("./callback/delete-category");
 const deleteDish = require("./callback/delete-dish");
 const editDish = require("./callback/edit-dish");
 const setAvailaibility = require("./callback/set-availability");
+const getAllRestaurantIds = require("./callback/get-all-restaurant-ids");
 
 /**
  * Handles request sent at `/restaurant` .
  */
 router.route("/").get(getRestaurantById);
+
+router.route("/ids").get(getAllRestaurantIds)
 
 router.route("/partner").get(getPartnerRestaurant);
 
