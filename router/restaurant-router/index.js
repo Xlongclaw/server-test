@@ -6,6 +6,7 @@ const addCategory = require("./callback/add-category");
 const getCategory = require("./callback/get-category");
 const addDish = require("./callback/add-dish");
 const getDish = require("./callback/get-dish");
+const deleteCategory = require("./callback/delete-category");
 
 /**
  * Handles request sent at `/restaurant` .
@@ -24,7 +25,7 @@ router.route('/category')
 
 
 router.route('/category')
-.get(getCategory)
+.get(getCategory).delete(deleteCategory)
 
 
 router.route('/dish')
