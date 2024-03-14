@@ -1,4 +1,3 @@
-const foodCategoryModel = require("../../../../database/models/foodCategoryModel");
 const restaurantModel = require("../../../../database/models/restaurantModel");
 
 const deleteCategory = async (request, response) => {
