@@ -19,7 +19,7 @@ const getUserFromToken = async (request, response) => {
    */
   if (tokenData.status == "VERIFIED") {
     const data = await userModel
-      .find({ phoneNumber: tokenData.data })
+      .find({ phoneNumber: tokenData.data }).select("name","password","phoneNumber")
       .catch(() => {
         response.status(401).json({ code: "NOT_FOUND" });
       });
