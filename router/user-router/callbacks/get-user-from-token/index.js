@@ -12,14 +12,14 @@ const getUserFromToken = async (request, response) => {
    * Getting Token verification Result in tokenData.
    */
   const tokenData = verifyToken(request.query.userToken);
-
+console.log(tokenData);
   /**
    * If token is verified searching for the user in database and sending
    * back the user data as response.
    */
   if (tokenData.status == "VERIFIED") {
     const data = await userModel
-      .find({ phoneNumber: tokenData.data }).select("name","password","phoneNumber")
+      .find({ phoneNumber: tokenData.data },'name password phoneNumber')
       .catch(() => {
         response.status(401).json({ code: "NOT_FOUND" });
       });
