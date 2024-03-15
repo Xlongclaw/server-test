@@ -11,7 +11,7 @@ const getUserFromToken = async (request, response) => {
   /**
    * Getting Token verification Result in tokenData.
    */
-  const tokenData = verifyToken(req.query.userToken);
+  const tokenData = verifyToken(request.query.userToken);
 
   /**
    * If token is verified searching for the user in database and sending
@@ -21,11 +21,11 @@ const getUserFromToken = async (request, response) => {
     const data = await userModel
       .find({ phoneNumber: tokenData.data })
       .catch(() => {
-        res.status(401).json({ code: "NOT_FOUND" });
+        response.status(401).json({ code: "NOT_FOUND" });
       });
-    res.status(200).json({ code: "SUCCESS", data });
+    response.status(200).json({ code: "SUCCESS", data });
   } else {
-    res.status(400).json({ code: "INVALID_TOKEN" });
+    response.status(400).json({ code: "INVALID_TOKEN" });
   }
 };
 
