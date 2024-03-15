@@ -11,6 +11,7 @@ const deleteDish = require("./callback/delete-dish");
 const editDish = require("./callback/edit-dish");
 const setAvailaibility = require("./callback/set-availability");
 const getAllRestaurantIds = require("./callback/get-all-restaurant-ids");
+const getDishPrice = require("./callback/get-dish-price");
 
 /**
  * Handles request sent at `/restaurant` .
@@ -33,6 +34,9 @@ router
   .post(addDish)
   .put(editDish)
   .delete(deleteDish);
+
+  router.route("/dish/price").get(getDishPrice)
+
 
   router
   .route("/dish/available")
