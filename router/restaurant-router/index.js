@@ -12,6 +12,7 @@ const editDish = require("./callback/edit-dish");
 const setAvailaibility = require("./callback/set-availability");
 const getAllRestaurantIds = require("./callback/get-all-restaurant-ids");
 const getDishPrice = require("./callback/get-dish-price");
+const getDishQuantity = require("./callback/get-dish-quantity");
 
 /**
  * Handles request sent at `/restaurant` .
@@ -36,6 +37,7 @@ router
   .delete(deleteDish);
 
   router.route("/dish/price").get(getDishPrice)
+  router.route("/dish/qty").get(getDishQuantity)
 
 
   router

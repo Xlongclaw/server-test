@@ -4,8 +4,8 @@
   "description": "This is a server for handling requests of preofo. Preofo is a react native application that preorders food from restaurant.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "XlongClaw",
   "license": "ISC",
