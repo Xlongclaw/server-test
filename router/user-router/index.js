@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const addUser = require('./callbacks/add-user')
 const getUserFromToken = require('./callbacks/get-user-from-token')
-const getUserFromCredentials = require('./callbacks/get-user-from-credentials')
+const getUserFromCredentials = require('./callbacks/get-user-from-credentials');
+const addToBasket = require("./callbacks/add-to-basket");
 
 
 /**
@@ -78,5 +79,11 @@ router.route('/add').post(addUser)
  */
 router.route('/token').get(getUserFromToken)
 
+
+
+
+
+
+router.route('/basket').post(addToBasket)
 
 module.exports = router;
