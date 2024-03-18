@@ -1,17 +1,25 @@
 const dishModel = require("../../../../database/models/dishModel");
-const userModel = require('../../../../database/models/userModel')
+const userModel = require("../../../../database/models/userModel");
+const verifyToken = require("../../../../utils/verifyToken");
 
 const getDish = async (request, response) => {
-
-  // await userModel.findOne()
-
   try {
-    if(!request.query._id){
-      response.json({code:'ID_NOT_FOUND',message:'_id not found'})
-    }
-    else{
-      const dish = await dishModel.findOne({_id:request.query._id})
-      response.json({code:'SUCCESS',dish})
+    if (!request.query._id) {
+      response.json({ code: "ID_NOT_FOUND", message: "_id not found" });
+    } else {
+      const dish = await dishModel.findOne({ _id: request.query._id });
+      const tokenData = verifyToken(request.query.userToken);
+      if(tokenData.status === 'VERIFIED'){
+        const data = await userModel.find({ phoneNumber: tokenData.data });
+        const restaurantOrder = data[0].basket.filter(
+          (element) => element.restaurantId === request.query.restaurantId
+        );
+        restaurantOrder[0].orderItems.map((order)=>{
+          if(request.query._id === order.dishId){
+            response.json({code:"SUCCESS",dish,qty:order.quantity})
+          }
+        })
+      }
     }
   } catch (error) {
     console.log(error);
