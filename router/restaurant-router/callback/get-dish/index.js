@@ -15,12 +15,14 @@ const getDish = async (request, response) => {
         const restaurantOrder = data[0].basket.filter(
           (element) => element.restaurantId === request.query.restaurantId
         );
-        restaurantOrder[0].orderItems.map((order) => {
-          if (request.query._id === order.dishId) {
-            count++;
-            response.json({ code: "SUCCESS", dish, qty: order.quantity });
-          }
-        });
+        if (restaurantOrder.length!==0) {
+          restaurantOrder[0].orderItems.map((order) => {
+            if (request.query._id === order.dishId) {
+              count++;
+              response.json({ code: "SUCCESS", dish, qty: order.quantity });
+            }
+          });
+        }
       }
       if (count === 0) response.json({ code: "SUCCESS", dish, qty: 0 });
     }
