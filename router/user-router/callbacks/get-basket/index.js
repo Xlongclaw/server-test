@@ -10,16 +10,19 @@ const getBasket = async (request, response) => {
         {
           phoneNumber: tokenData.data,
         },
-        {
-          _id:0,
-          basket: { $elemMatch: { restaurantId: request.query.restaurantId } },
-        }
       )
-      .select("basket")
       .catch(() => {
         response.status(401).json({ code: "NOT_FOUND" });
       });
-    response.status(200).json({ code: "SUCCESS", data });
+      const basket = []
+      console.log(data);
+      data.basket.forEach(element => {
+        if(element.restaurantId===request.query.restaurantId){
+          basket.push(element)
+        }
+      });
+
+    response.status(200).json({ code: "SUCCESS", basket });
   } else {
     response.status(400).json({ code: "INVALID_TOKEN" });
   }

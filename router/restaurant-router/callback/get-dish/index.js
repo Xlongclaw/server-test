@@ -1,6 +1,10 @@
 const dishModel = require("../../../../database/models/dishModel");
+const userModel = require('../../../../database/models/userModel')
 
 const getDish = async (request, response) => {
+
+  // await userModel.findOne()
+
   try {
     if(!request.query._id){
       response.json({code:'ID_NOT_FOUND',message:'_id not found'})
