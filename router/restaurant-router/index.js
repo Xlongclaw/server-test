@@ -37,7 +37,7 @@ router
   .delete(deleteDish);
 
   router.route("/dish/price").get(getDishPrice)
-  router.route("/dish/qty").get(getDishQuantity)
+  // router.route("/dish/qty").get(getDishQuantity)
 
 
   router
