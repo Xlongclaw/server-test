@@ -15,6 +15,7 @@ const addToBasket = async (request, response) => {
     await userModel.updateOne(
       {
         phoneNumber: tokenData.data,
+        // basket: { $elemMatch: { name: req.body.item.name } },
       },
       {
         $push: { basket: request.body.order },

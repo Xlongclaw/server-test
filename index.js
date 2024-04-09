@@ -36,49 +36,52 @@ server.use('/restaurant',restaurantRouter)
 const PORT = process.env.PORT ?? 9090
 const SERVER_ADDRESS = process.env.SERVER_ADDRESS ?? `{SERVER_ADDRESS}`
 
-const httpServer = server.listen(PORT,function(){
+server.listen(PORT,function(){
   console.log(`Server is running at -> ${SERVER_ADDRESS}:${PORT}`);
   connectDatabase()
 })
 
-const wss = new WebSocket.Server({noServer:true})
-
-
-httpServer.on('upgrade',(req,socket,head)=>{
-  wss.handleUpgrade(req, socket, head, (ws) => {
-    wss.emit('connection', ws, req)
-  })
-})
 
 
 
+// const wss = new WebSocket.Server({noServer:true})
+
+
+// httpServer.on('upgrade',(req,socket,head)=>{
+//   wss.handleUpgrade(req, socket, head, (ws) => {
+//     wss.emit('connection', ws, req)
+//   })
+// })
 
 
 
-wss.on('connection', async(ws,request)=>{
-  try {
-    ws.on('message',(message)=>{
-      console.log("message: %s", message);
-    })
-    const routes = request.url.split("/");
-    const partner = await partnerModel.findOne({
-      phoneNumber: routes[1],
-      password: routes[2],
-    });
-    if (partner) {
-      dishModel.watch().on("change", (data) => {
-        console.log(data);
-        ws.send(
-          JSON.stringify({
-            code: "CHANGED",
-            _id: data.documentKey._id,
-          })
-        );
-      });
-    } else {
-      ws.send("Please Register to Preofo First or Check your Password");
-    }
-  } catch (error) {
-    console.log(error);
-  }
-})
+
+
+
+// wss.on('connection', async(ws,request)=>{
+//   try {
+//     ws.on('message',(message)=>{
+//       console.log("message: %s", message);
+//     })
+//     const routes = request.url.split("/");
+//     const partner = await partnerModel.findOne({
+//       phoneNumber: routes[1],
+//       password: routes[2],
+//     });
+//     if (partner) {
+//       dishModel.watch().on("change", (data) => {
+//         console.log(data);
+//         ws.send(
+//           JSON.stringify({
+//             code: "CHANGED",
+//             _id: data.documentKey._id,
+//           })
+//         );
+//       });
+//     } else {
+//       ws.send("Please Register to Preofo First or Check your Password");
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+// })
